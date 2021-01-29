@@ -1,0 +1,59 @@
+<mat-toolbar color="primary">
+  <span class="fill-remaining-space">Candidate Details</span>
+</mat-toolbar>
+
+
+<br><br><br>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Search by Candidate Name</mat-label>
+    <input matInput placeholder="Ex. Ayush" (input)="searchByName($event.target.value)">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="removeDevDep()">Remove Development Department</button>
+
+  <button mat-raised-button color="primary" (click)="unsetFilter()">Unset Filter</button>
+<br>
+<mat-form-field appearance="fill">
+  <mat-label>Sort By</mat-label>
+  <select matNativeControl required (change)="sortBy($event.target.value)">
+    <option value="">--Select--</option>
+    <option value="sort_by_name">Sort By Name</option>
+    <option value="sort_by_joining_date">Sort By Joining Date</option>
+  </select>
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="department">
+      <th mat-header-cell *matHeaderCellDef> Department </th>
+      <td mat-cell *matCellDef="let element"> {{element.department}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="joining_date">
+      <th mat-header-cell *matHeaderCellDef> Joining Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.joining_date}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+  
